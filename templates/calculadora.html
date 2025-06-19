@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #e0f2f7; /* Um azul claro */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #cce7ee;
+        }
+        h1 {
+            color: #007bbd; /* Azul mais escuro */
+            margin-bottom: 28px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 24px); /* Ajusta padding */
+            padding: 12px;
+            border: 1px solid #b3e0ff; /* Azul claro */
+            border-radius: 6px;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #007bbd;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 189, 0.2);
+        }
+        .operator-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #007bbd;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.15em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        button:hover {
+            background-color: #005f99;
+            transform: translateY(-2px);
+        }
+        .error-message {
+            color: #d9534f; /* Vermelho */
+            background-color: #fcebeb;
+            border: 1px solid #f2dede;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .footer-note {
+            margin-top: 35px;
+            font-size: 0.85em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Simples</h1>
+
+        {% if erro %}
+            <p class="error-message">{{ erro }}</p>
+        {% endif %}
+
+        <form action="/calcular_operacao" method="POST">
+            <div class="form-group">
+                <label for="numero1">Primeiro Número:</label>
+                <input type="number" id="numero1" name="numero1"
+                       placeholder="Ex: 10" required step="any"
+                       value="{{ numero1_antigo if numero1_antigo is defined else '' }}">
+            </div>
+            <div class="form-group">
+                <label for="operacao">Operação:</label>
+                <input type="text" id="operacao" name="operacao"
+                       placeholder="+ - * /" required maxlength="1"
+                       value="{{ operacao_antiga if operacao_antiga is defined else '' }}">
+                <div class="operator-info">(+ = adição, - = subtração, * = multiplicação e / = divisão)</div>
+            </div>
+            <div class="form-group">
+                <label for="numero2">Segundo Número:</label>
+                <input type="number" id="numero2" name="numero2"
+                       placeholder="Ex: 5" required step="any"
+                       value="{{ numero2_antigo if numero2_antigo is defined else '' }}">
+            </div>
+            <button type="submit">Calcular</button>
+        </form>
+
+        <p class="footer-note">Preencha os números e a operação para calcular.</p>
+    </div>
+</body>
+</html>
