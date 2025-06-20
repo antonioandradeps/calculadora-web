@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Calculadora</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #e0f2f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #cce7ee;
+        }
+        h1 {
+            color: #007bbd;
+            margin-bottom: 28px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        .result-box {
+            background-color: #f0f8ff; /* Azul muito claro */
+            border: 1px solid #a6daed;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-size: 1.6em; /* Tamanho maior para o resultado */
+            color: #00567e;
+            font-weight: bold;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #607d8b; /* Cinza-azul */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1.05em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+        }
+        .back-button:hover {
+            background-color: #4a6572;
+            transform: translateY(-2px);
+        }
+        .footer-note {
+            margin-top: 35px;
+            font-size: 0.85em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado da Operação</h1>
+
+        <div class="result-box">
+            <p>{{ expressao }}</p>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-button">Nova Operação</a>
+
+        <p class="footer-note">Calculado pela sua aplicação Flask.</p>
+    </div>
+</body>
+</html>
